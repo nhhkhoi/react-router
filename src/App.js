@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import PaginationControlled from "./components/PaginationControlled";
+import React from "react";
+import JobCards from "./components/JobCards";
+import SearchAppBar from "./components/SeachAppBar";
+import Jobs from "./jobs.json";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+import Container from "@mui/material/Container";
 
 function App() {
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+  const beginning = 5 * (page - 1);
+  const end = 5 * page;
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <ThemeProvider theme={theme}>
+        <SearchAppBar />
+        <Container
+          sx={{
+            p: 1,
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          {Jobs.slice(beginning, end).map((job) => (
+            <JobCards key={job.id} job={job} />
+          ))}
+        </Container>
+        <PaginationControlled page={page} handleChange={handleChange} />
+        <CssBaseline />
+      </ThemeProvider>
     </div>
   );
 }

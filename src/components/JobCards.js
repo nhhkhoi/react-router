@@ -30,14 +30,14 @@ export default function JobCards({ job }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        // justifyContent: "center",
       }}
     >
       <CardContent sx={{ paddingTop: 2, paddingBottom: 0 }}>
-        <Typography component="div">{job.title}</Typography>
+        <Typography component="div">{job.name}</Typography>
       </CardContent>
-      <CardContent sx={{ margin: 0.5, padding: 0.5 }}>
-        {job.skills.slice(0, 4).map((jobcard) => (
+      {/* <CardContent sx={{ margin: 0.5, padding: 0.5 }}>
+        {job.benefits.map((jobcard) => (
           <RedButton
             sx={{ borderRadius: 2, padding: 0.5, margin: 0.5, fontSize: 8 }}
             component="span"
@@ -45,7 +45,7 @@ export default function JobCards({ job }) {
             {jobcard}
           </RedButton>
         ))}
-      </CardContent>
+      </CardContent> */}
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {job.description}

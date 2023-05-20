@@ -20,6 +20,7 @@ function App() {
       mode: "dark",
     },
   });
+
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -33,7 +34,7 @@ function App() {
             justifyContent: "center",
           }}
         >
-          {Jobs.slice(beginning, end).map((job) => (
+          {Jobs.companies.slice(beginning, end).map((job) => (
             <JobCards key={job.id} job={job} />
           ))}
         </Container>

@@ -10,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -84,16 +85,18 @@ export default function SearchAppBar() {
           <IconButton sx={{ mr: 2, display: { sm: "none", xs: "flex" } }}>
             <MoreVertIcon />
           </IconButton>
-          <Button
-            color="inherit"
-            startIcon={<LoginIcon />}
-            sx={{
-              display: { sm: "flex", xs: "none" },
-              marginLeft: { xs: 0, sm: 20, md: 40, lg: 60 },
-            }}
-          >
-            Sign in
-          </Button>
+          <Link to="/LoginModal">
+            <Button
+              color="inherit"
+              startIcon={<LoginIcon />}
+              sx={{
+                display: { sm: "flex", xs: "none" },
+                marginLeft: { xs: 0, sm: 20, md: 40, lg: 60 },
+              }}
+            >
+              Sign in
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>

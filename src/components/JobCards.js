@@ -1,25 +1,8 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
-import { red, orange } from "@mui/material/colors";
-
-const RedButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText(red[500]),
-  backgroundColor: red[500],
-  "&:hover": {
-    backgroundColor: red[700],
-  },
-}));
-const OrangeButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText(orange[500]),
-  backgroundColor: orange[500],
-  "&:hover": {
-    backgroundColor: orange[700],
-  },
-}));
+import DetailModal from "./DetailModal";
 
 export default function JobCards({ job }) {
   return (
@@ -30,31 +13,37 @@ export default function JobCards({ job }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        // justifyContent: "center",
+        WebkitBoxShadow: "3px 12px 15px 0px rgba(9,9,8,0.31)",
+        BoxShadow: "3px 12px 15px 0px rgba(9,9,8,0.31)",
+        backgroundColor: "#2f3640",
       }}
     >
-      <CardContent sx={{ paddingTop: 2, paddingBottom: 0 }}>
-        <Typography component="div">{job.name}</Typography>
-      </CardContent>
-      {/* <CardContent sx={{ margin: 0.5, padding: 0.5 }}>
-        {job.benefits.map((jobcard) => (
-          <RedButton
-            sx={{ borderRadius: 2, padding: 0.5, margin: 0.5, fontSize: 8 }}
-            component="span"
-          >
-            {jobcard}
-          </RedButton>
-        ))}
-      </CardContent> */}
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {job.description}
+      <CardContent sx={{}}>
+        <Typography component="div" sx={{ fontWeight: "bold" }}>
+          {job.name}
+          <hr />
         </Typography>
       </CardContent>
+      <CardContent sx={{ alignSelf: "flex-start" }}>
+        <Typography>Job Number: {job.numOfJobs} </Typography>
+        <Typography>Job Rating: {job.numOfRatings} </Typography>
+      </CardContent>
+
+      <CardContent
+        sx={{
+          width: "100%",
+          overflow: "hidden",
+          display: "-webkit-box",
+          WebkitLineClamp: "3",
+          WebkitBoxOrient: "vertical",
+          paddingBottom: 0,
+        }}
+      >
+        Job Detail: {job.description}
+      </CardContent>
+
       <CardContent sx={{ margin: 0.5, padding: 0.5 }}>
-        <OrangeButton sx={{ padding: 1, marginBottom: 1, marginTop: 1 }}>
-          Learn More
-        </OrangeButton>
+        <DetailModal name={job.name} benefits={job.benefits} />
       </CardContent>
     </Card>
   );
